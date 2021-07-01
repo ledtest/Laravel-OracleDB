@@ -1,16 +1,20 @@
 {
-  "name": "jfelder/oracledb",
+  "name": "ledtest/oracle",
   "description": "Oracle DB driver for Laravel",
   "keywords": ["oracle", "laravel", "laravel 8", "pdo_oci", "oci8"],
   "license": "MIT",
   "authors": [
-      {
-        "name": "Jimmy Felder",
-        "email": "jimmyfelder@gmail.com"
-      }
+    {
+      "name": "Jimmy Felder",
+      "email": "jimmyfelder@gmail.com"
+    },
+    {
+      "name": "ledtest",
+      "email": "3130836035@qq.com"
+    }
   ],
   "require": {
-    "php": "^7.3.0",
+    "php": "^7.3|^8.0",
     "illuminate/support": "^8.0",
     "illuminate/database": "^8.24.0",
     "illuminate/pagination": "^8.0"
@@ -27,9 +31,9 @@
   "extra": {
     "laravel": {
       "providers": [
-          "Jfelder\\OracleDB\\OracleDBServiceProvider"
+        "Jfelder\\OracleDB\\OracleDBServiceProvider"
       ]
     }
   },
-  "minimum-stability": "stable"
+  "minimum-stability": "dev"
 }
