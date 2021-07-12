@@ -196,7 +196,7 @@ class OCIStatement extends \PDOStatement
 
     /**
      * Closes the cursor, enabling the statement to be executed again.
-     * 
+     *
      * Todo implement this method instead of always returning true
      *
      * @return bool Returns TRUE on success or FALSE on failure.
@@ -321,27 +321,9 @@ class OCIStatement extends \PDOStatement
         return $this->processFetchOptions($rs);
     }
 
-    /**
-     * Returns an array containing all of the result set rows.
-     *
-     * @param int|null $fetch_style    Controls how the next row will be returned to the caller. This value must be one
-     *                                 of the PDO::FETCH_* constants
-     * @param mixed    $fetch_argument This argument have a different meaning depending on the value of the
-     *                                 fetch_style parameter
-     * @param array    $ctor_args      Arguments of custom class constructor when the fetch_style parameter is
-     *                                 PDO::FETCH_CLASS.
-     *
-     * @return array
-     */
-    public function fetchAll($fetch_style = \PDO::FETCH_CLASS, $fetch_argument = null, $ctor_args = [])
+    public function fetchAll($mode = PDO::FETCH_BOTH, ...$args)
     {
-        if ($fetch_style != \PDO::FETCH_CLASS && $fetch_style != \PDO::FETCH_ASSOC) {
-            throw new \InvalidArgumentException(
-                "Invalid fetch style requested: {$fetch_style}. Only PDO::FETCH_CLASS and PDO::FETCH_ASSOC suported."
-            );
-        }
-
-        $this->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, $fetch_style);
+        $this->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_BOTH);
 
         $rs = oci_fetch_all($this->stmt, $temprs, 0, -1, \OCI_FETCHSTATEMENT_BY_ROW + \OCI_ASSOC);
 
@@ -475,15 +457,7 @@ class OCIStatement extends \PDOStatement
         return true;
     }
 
-    /**
-     * Set the default fetch mode for this statement.
-     *
-     * @param int $mode The fetch mode must be one of the PDO::FETCH_* constants.
-     * @param mixed $type Column number, class name or object depending on PDO::FETCH_* constant used
-     * @param array $ctorargs Constructor arguments
-     * @return bool Returns TRUE on success or FALSE on failure
-     */
-    public function setFetchMode($mode, $type = null, $ctorargs = [])
+    public function setFetchMode($mode, $className = null, ...$params)
     {
         return true;
     }
