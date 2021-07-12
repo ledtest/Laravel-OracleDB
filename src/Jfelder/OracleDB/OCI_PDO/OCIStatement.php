@@ -2,6 +2,8 @@
 
 namespace Jfelder\OracleDB\OCI_PDO;
 
+use PDO;
+
 class OCIStatement extends \PDOStatement
 {
     /**
